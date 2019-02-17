@@ -1,6 +1,5 @@
 import React from 'react' 
 import PropTypes from 'prop-types' 
-import * as BookAPI from './BooksAPI' // API functions
 
 // Book Class
 const Book = props => {
