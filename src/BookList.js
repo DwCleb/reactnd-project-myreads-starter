@@ -1,47 +1,48 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Book from './Book'
+import sortBy from 'sort-by'
 
 const BookList = props => {
-  const shelf_name = ["Currently reading", "Want to Read", "Read", "None"]
-  const shelf_types = ["currentlyReading", "wantToRead", "read", "none"]
-  
-  const { books, onChangeShelf } = props
-  
-  const shelf = shelf_types.map(
-    (title, index) => {
-      const books = (books != undefined && books instanceof Array)
-                    && (books.filter((book) => book.shelf === title))
-      return (
-        <div key={title} className="book-shelf-detail">
-          <p> Book shelf Name: {shelf_name[index]} </p>
-          <ol className="book-grid">
-            { books != undefined &&
-              books.length !== 0 &&
-                books.map((book, index)=> {
-                  return (
-                    <li key={index}>
-                      <Book book={book} onChangeShelf={onChangeShelf} />
-                    </li>
-                  )
-                })  
-            }
-          </ol>
-        </div>
-      )
-    }
-  )
 
+  const shelves = ["currentlyReading", "wantToRead", "read"]
+  const shelveNames = ["Currently Reading", "Want To Read", "Read"]
   return (
-    <div className="book-list">
-      {shelf}
+    <div>
+      {shelves.map((shelf, index) => {
+        return(
+          <div key={index} className="list-books-content">
+            <div>
+              <div>
+                <div className="bookshelf">
+                  <h2 className="bookshelf-title">{shelveNames[index]}</h2>
+                  <div className="bookshelf-books">
+                    <ol className="books-grid">
+                      {props.books.sort(sortBy('title'))
+                        .filter(book => book.shelf === shelf)
+                        .map(book => (
+                          <Book 
+                            onMoveBook={props.onMoveBook}
+                            key={book.id}
+                            book={book}
+                          />
+                        ))
+                      }
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      )}
     </div>
   )
 }
 
 BookList.propTypes = {
   books: PropTypes.array.isRequired,
-  onChangeShelf: PropTypes.func.isRequired,
+  onMoveBook: PropTypes.func.isRequired,
 }
 
 export default BookList

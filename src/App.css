@@ -53,7 +53,7 @@ body, .app {
   bottom: 25px;
 }
 
-.open-search button {
+.button-open-search {
   display: block;
   width: 50px;
   height: 50px;
@@ -68,7 +68,7 @@ body, .app {
   outline: 0;
 }
 
-.open-search button:hover {
+.button-open-search:hover {
   background-color: rgb(0, 102, 0);
 }
 
@@ -136,10 +136,12 @@ button:active {
 .books-grid li {
   padding: 10px 15px;
   text-align: left;
+  margin: 10px;
 }
 
 .book {
   width: 140px;
+  margin: 10px;
 }
 
 .book-title,
