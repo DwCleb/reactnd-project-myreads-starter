@@ -42,7 +42,7 @@ class Book extends Component{
           {/* Book options */}
           <div className="book-shelf-changer">
             <select
-              value={shelf}
+              value={shelf !== undefined ? shelf : 'none'}
               onChange={ (event) => { onMoveBook(event, book) }}
             >
               <option value="" disabled>Move to...</option>
@@ -55,7 +55,7 @@ class Book extends Component{
         </div>
         {/* Book information: Title and Authors */}
         <div className="book-title">{title}</div>
-        <div className="book-authors">{authors}</div>
+        <div className="book-authors">{authors && authors.join(', ')}</div>
         <Details
           book={book}
           modalIsOpen={isOpenModal}

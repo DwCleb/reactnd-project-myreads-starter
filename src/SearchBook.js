@@ -4,6 +4,7 @@ import * as BooksAPI from './BooksAPI'
 import Book from './Book'
 import sortBy from 'sort-by'
 import PropTypes from 'prop-types'
+import { Debounce  } from 'react-throttle';
 
 class Search extends Component {
   
@@ -18,8 +19,8 @@ class Search extends Component {
   }
 
   updateQuery = (query) => {
-    console.log(query.length)
-    if (!query) {
+    const { booksOnShelf } = this.props
+    if (query.length < 1) {
       this.setState({query: '', books: []})
     } else {
       this.setState({ query: query.trim() })
@@ -27,7 +28,7 @@ class Search extends Component {
         if (books.error) {
           books = []
         }
-        books.map(book => (this.props.booksOnShelf.filter((b) => b.id === book.id).map(b => book.shelf = b.shelf)))
+        books.map(book => (booksOnShelf.filter((b) => b.id === book.id).map(b => book.shelf = b.shelf)))
         this.setState({books})
       })
     }
@@ -35,30 +36,37 @@ class Search extends Component {
   }
 
   render () {
+    const { books } = this.state
+    const { onMoveBook } = this.props
     return (
       <div className="search-books">
         <div className="search-books-bar">
           <Link className="close-search" to="/">Close</Link>
           <div className="search-books-input-wrapper">
+          <Debounce time="450" handler="onChange">
             <input 
               type="text" 
               placeholder="Search by title or author"
-              onChange={(e) => (e.target.value.length > 0) ? this.updateQuery(e.target.value) : this.updateQuery('')}
+              onChange={(e) => this.updateQuery(e.target.value)}
             />
+          </Debounce>
           </div>
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
             <div className="bookshelf-books">
               <ol className="books-grid">
-                {this.state.books.sort(sortBy('title'))
+                { books.length > 0 
+                  ?
+                  books.sort(sortBy('title'))
                   .map(book => (
                     <Book 
                       key={book.id}
-                      book={book !== {} ? book : {}}
-                      onMoveBook={this.props.onMoveBook}
+                      book={book}
+                      onMoveBook={onMoveBook}
                     />
                   ))
+                  : ('')
                 }
               </ol>
             </div>

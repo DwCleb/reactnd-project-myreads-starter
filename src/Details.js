@@ -60,13 +60,13 @@ const Details = props => {
             <p>
               <span className="details-field">Authors </span>
               <br></br>
-              <span className="details-value">{book.authors}</span>
+              <span className="details-value">{book.authors && book.authors.join(', ')}</span>
             </p>
             
             <p>
               <span className="details-field">Categories </span>
               <br></br>
-              <span className="details-value">{book.categories}</span>
+              <span className="details-value">{book.categories && book.categories.join(', ')}</span>
             </p>
             
             <p>
