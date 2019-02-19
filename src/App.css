@@ -111,6 +111,23 @@ body, .app {
   font-size: 0;
   border: none;
   outline: none;
+  cursor: pointer;
+}
+
+.close-modal {
+  display: block;
+  top: 20px;
+  left: 15px;
+  width: 50px;
+  height: 53px;
+  background-image: url('./icons/close.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 28px;
+  font-size: 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 button:active {
@@ -197,4 +214,87 @@ button:active {
   padding: 20px 10px 0;
   text-align: center;
   font-size: 0.8em;
+}
+
+/* Details */
+.details-grid {
+  list-style-type: none;
+  padding: 10;
+  margin: 10px;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.details-column-1 {
+  float: left;
+  width: 30%;
+  justify-content: center;
+}
+
+.details-column-2 {
+  float: left;
+  width: 35%;
+  margin-top: -3%;
+}
+
+.details-column-3 {
+  float: left;
+  width: 35%;
+  margin-top: -3%;
+}
+
+.details-column-4 {
+  float: right;
+  width: 100%;
+  padding: 2%;
+  text-align: 'justify';
+  justify-content: center;
+}
+
+.details-field {
+  font-size: 13pt;
+  font-weight: 900;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #999;
+  border-width: 100%;
+}
+
+.details-value {
+  font-size: 11pt;
+  font-weight: 500;
+}
+
+.details-button {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #2e7c31;
+  border-color: #ccc;
+  text-decoration: none;
+  margin-left: 2%;
+}
+
+.details-book-cover {
+  box-shadow: 0;
+  background: 'transparent';
+  margin-left: 5%;
+  width: 100px;
+  height: 150px;
 }
